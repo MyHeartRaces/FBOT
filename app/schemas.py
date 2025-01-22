@@ -1,11 +1,14 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-class ProductCreate(BaseModel):
+class ProductCreateSchema(BaseModel):
+    artikul: str = Field(..., example="211695539")
+
+class ProductResponseSchema(BaseModel):
     artikul: str
-
-class ProductOut(BaseModel):
     name: str
-    sku: str
     price: float
     rating: float
     total_quantity: int
+
+    class Config:
+        from_attributes = True
